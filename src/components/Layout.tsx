@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             />
             <div className="leading-none hidden sm:block">
               <p className="font-display text-2xl text-primary text-stroke tracking-wide">LENS CUP</p>
-              <p className="text-[10px] tracking-[0.3em] text-accent uppercase">Null's Brawl</p>
+              <p className="text-[10px] tracking-[0.2em] text-accent uppercase">Null's Brawl Tournament</p>
             </div>
           </Link>
 
