@@ -2,6 +2,8 @@ import Layout from '@/components/Layout';
 import Icon from '@/components/ui/icon';
 import { TWITCH_CHANNEL, HERO } from '@/lib/constants';
 
+const TG_URL = 'https://t.me/Lens_Cup';
+
 const vods = [
   { title: 'Лучшие моменты недели', duration: 'VOD', type: 'clips' },
   { title: 'Разбор матча Полуфинал', duration: 'VOD', type: 'videos' },
@@ -19,16 +21,18 @@ export default function Stream() {
           </div>
           <div>
             <h1 className="font-display text-4xl md:text-5xl text-foreground text-stroke leading-none">Трансляции</h1>
-            <p className="text-sm text-muted-foreground mt-1">Прямые эфиры и записи матчей на Twitch</p>
+            <p className="text-sm text-muted-foreground mt-1">Прямые эфиры и записи матчей</p>
           </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Главный блок */}
           <div className="lg:col-span-2 space-y-4">
-            {/* Live карточка */}
+
+            {/* Twitch карточка */}
             <div className="bg-card rounded-2xl border-2 overflow-hidden" style={{ borderColor: '#9147ff' }}>
-              <div className="aspect-video bg-background/60 flex flex-col items-center justify-center relative group cursor-pointer"
+              <div
+                className="aspect-video bg-background/60 flex flex-col items-center justify-center relative group cursor-pointer"
                 onClick={() => window.open(`https://twitch.tv/${TWITCH_CHANNEL}`, '_blank')}
               >
                 <img src={HERO} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" />
@@ -51,21 +55,17 @@ export default function Stream() {
                     Открыть Twitch
                   </a>
                 </div>
-                <div className="absolute top-4 left-4 flex items-center gap-2">
-                  <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-destructive text-destructive-foreground text-xs font-extrabold animate-pulse-glow">
-                    ● LIVE
-                  </span>
-                </div>
-                <div className="absolute bottom-4 right-4">
-                  <span className="px-3 py-1 rounded-lg text-xs font-bold text-white" style={{ background: 'rgba(0,0,0,0.6)' }}>
-                    twitch.tv/{TWITCH_CHANNEL}
-                  </span>
-                </div>
+                <span className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-destructive text-destructive-foreground text-xs font-extrabold animate-pulse-glow">
+                  ● LIVE
+                </span>
+                <span className="absolute bottom-4 right-4 px-3 py-1 rounded-lg text-xs font-bold text-white" style={{ background: 'rgba(0,0,0,0.6)' }}>
+                  twitch.tv/{TWITCH_CHANNEL}
+                </span>
               </div>
               <div className="p-5 flex items-start justify-between gap-4">
                 <div>
                   <h3 className="font-extrabold text-xl">Прямая трансляция Lens Cup</h3>
-                  <p className="text-sm text-muted-foreground mt-1">Следи за всеми матчами в прямом эфире на нашем Twitch-канале</p>
+                  <p className="text-sm text-muted-foreground mt-1">Следи за всеми матчами в прямом эфире на Twitch</p>
                 </div>
                 <a
                   href={`https://twitch.tv/${TWITCH_CHANNEL}`}
@@ -80,30 +80,24 @@ export default function Stream() {
               </div>
             </div>
 
-            {/* Ссылки */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                { label: 'Все трансляции', path: 'videos', icon: 'Video', desc: 'Полные записи матчей' },
-                { label: 'Клипы', path: 'clips', icon: 'Scissors', desc: 'Лучшие моменты' },
-              ].map((item) => (
-                <a
-                  key={item.path}
-                  href={`https://twitch.tv/${TWITCH_CHANNEL}/${item.path}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 bg-card rounded-2xl border-2 border-border p-5 hover:border-primary transition-all group"
-                >
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0" style={{ background: '#9147ff33' }}>
-                    <Icon name={item.icon} size={22} style={{ color: '#9147ff' }} />
-                  </div>
-                  <div>
-                    <p className="font-extrabold group-hover:text-primary transition-colors">{item.label}</p>
-                    <p className="text-xs text-muted-foreground">{item.desc}</p>
-                  </div>
-                  <Icon name="ArrowRight" size={18} className="ml-auto text-muted-foreground group-hover:text-primary transition-colors" />
-                </a>
-              ))}
-            </div>
+            {/* Telegram баннер */}
+            <a
+              href={TG_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-5 bg-card rounded-2xl border-2 border-border p-6 hover:border-accent transition-all group"
+            >
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 text-white text-2xl" style={{ background: '#2AABEE' }}>
+                ✈️
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="font-extrabold text-lg group-hover:text-accent transition-colors">Telegram-канал Lens Cup</p>
+                <p className="text-sm text-muted-foreground">Новости, анонсы матчей, результаты — подпишись, чтобы не пропустить</p>
+                <p className="text-xs font-bold mt-1" style={{ color: '#2AABEE' }}>t.me/Lens_Cup</p>
+              </div>
+              <Icon name="ArrowRight" size={20} className="shrink-0 text-muted-foreground group-hover:text-accent transition-colors" />
+            </a>
+
           </div>
 
           {/* VOD список */}
@@ -132,13 +126,16 @@ export default function Stream() {
                 </div>
               </a>
             ))}
+
+            {/* Ссылка на Telegram в сайдбаре */}
             <a
-              href={`https://twitch.tv/${TWITCH_CHANNEL}/videos`}
+              href={TG_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border-2 border-border text-sm font-bold text-muted-foreground hover:border-primary hover:text-primary transition-all"
+              className="flex items-center justify-center gap-2 w-full py-3 rounded-xl border-2 text-sm font-bold transition-all hover:opacity-90 text-white"
+              style={{ background: '#2AABEE', borderColor: '#2AABEE' }}
             >
-              Все видео <Icon name="ArrowRight" size={15} />
+              ✈️ Наш Telegram
             </a>
           </div>
         </div>
