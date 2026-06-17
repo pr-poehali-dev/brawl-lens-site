@@ -3,7 +3,7 @@ import Icon from '@/components/ui/icon';
 import { Button } from '@/components/ui/button';
 
 const HERO = 'https://cdn.poehali.dev/projects/0a8a2dde-1c61-44d8-8f0b-872ec8419110/files/99fc794b-5915-4f16-8e97-9c8e454c41d9.jpg';
-const CREST = 'https://cdn.poehali.dev/projects/0a8a2dde-1c61-44d8-8f0b-872ec8419110/files/d7b05c17-58a2-448b-a97d-982bf5329b82.jpg';
+const CREST = 'https://cdn.poehali.dev/projects/0a8a2dde-1c61-44d8-8f0b-872ec8419110/bucket/6565d3de-aefa-4a34-8543-d9397a97c378.jpg';
 
 const NAV = [
   { id: 'news', label: 'Новости', icon: 'Newspaper' },
